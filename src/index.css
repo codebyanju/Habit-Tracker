@@ -1,0 +1,66 @@
+:root {
+  /* Bullet Journal Palette - Muted & Aesthetic */
+  --bg-paper: #fdfaf6;      /* Warm off-white paper color */
+  --text-primary: #4a4a4a;  /* Soft graphite black */
+  --text-secondary: #8b8b8b;
+  
+  /* Highlighter Colors */
+  --color-accent-1: #f28b82; /* Pastel Red */
+  --color-accent-2: #fbbc04; /* Pastel Yellow */
+  --color-accent-3: #fff475; /* Pastel Lemon */
+  --color-accent-4: #ccff90; /* Pastel Green */
+  --color-accent-5: #a7ffeb; /* Pastel Teal */
+  --color-accent-6: #cbf0f8; /* Pastel Blue */
+  --color-accent-7: #aecbfa; /* Pastel Indigo */
+  --color-accent-8: #d7aefb; /* Pastel Purple */
+  
+  --grid-dot-color: #e0e0e0;
+  --border-color: #d1d1d1;
+  
+  /* Spacing */
+  --spacing-unit: 8px;
+  
+  /* Fonts */
+  --font-hand: 'Courier New', Courier, monospace; /* Placeholder for handwritten feel */
+  --font-ui: system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-paper);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  
+  /* Dotted Grid Background */
+  background-image: radial-gradient(var(--grid-dot-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Custom Scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
