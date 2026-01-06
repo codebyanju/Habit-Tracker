@@ -45,6 +45,42 @@ app.post('/api/defaults', (req, res) => {
     }
 });
 
+// Get Smart Recommendations (Habits used in past months but NOT in defaults)
+app.get('/api/recommendations', (req, res) => {
+    try {
+        // 1. Get current defaults to exclude them
+        let currentDefaults = [];
+        if (fs.existsSync(DEFAULTS_FILE)) {
+            currentDefaults = JSON.parse(fs.readFileSync(DEFAULTS_FILE, 'utf8')).map(h => h.name.toLowerCase());
+        }
+
+        // 2. Scan all month files
+        const files = fs.readdirSync(USER_DATA_DIR).filter(f => /^\d{4}-\d{2}\.json$/.test(f));
+
+        const candidates = new Map(); // Use Map to track unique habits by name
+
+        files.forEach(file => {
+            const content = JSON.parse(fs.readFileSync(path.join(USER_DATA_DIR, file), 'utf8'));
+            if (content.habits) {
+                content.habits.forEach(h => {
+                    const normalizedName = h.name.toLowerCase();
+                    if (!currentDefaults.includes(normalizedName)) {
+                        // Store the original casing and color of the most recent occurrence (simplification)
+                        candidates.set(normalizedName, { name: h.name, color: h.color });
+                    }
+                });
+            }
+        });
+
+        const recommendations = Array.from(candidates.values());
+        res.json(recommendations);
+
+    } catch (err) {
+        console.error("Error generating recommendations:", err);
+        res.status(500).json([]);
+    }
+});
+
 // Get data for a specific month (with Auto-Seeding)
 app.get('/api/data/:monthId', (req, res) => {
     const { monthId } = req.params;
@@ -54,9 +90,12 @@ app.get('/api/data/:monthId', (req, res) => {
         const data = fs.readFileSync(filePath, 'utf8');
         res.json(JSON.parse(data));
     } else {
-        // Month doesn't exist: SEED from Defaults
+        // Month doesn't exist: SEED from Defaults (ONLY for Current or Future months)
         let defaultHabits = [];
-        if (fs.existsSync(DEFAULTS_FILE)) {
+        const currentMonth = new Date().toISOString().slice(0, 7); // "YYYY-MM"
+
+        // Only seed if the requested month is NOT in the past
+        if (monthId >= currentMonth && fs.existsSync(DEFAULTS_FILE)) {
             try {
                 const defaults = JSON.parse(fs.readFileSync(DEFAULTS_FILE, 'utf8'));
                 // Map defaults to full habit objects

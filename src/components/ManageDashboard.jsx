@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Plus, Trash2, ArrowRight } from 'lucide-react';
+import { Plus, Trash2, ArrowRight, Sparkles } from 'lucide-react';
 import { useHabitDefaults } from '../hooks/useHabitDefaults';
 
 export function ManageDashboard() {
-    const { defaultHabits, isLoading, addDefaultHabit, deleteDefaultHabit } = useHabitDefaults();
+    const { defaultHabits, recommendations, isLoading, addDefaultHabit, deleteDefaultHabit } = useHabitDefaults();
     const [customName, setCustomName] = useState("");
 
     const handleCreate = (e) => {
@@ -38,7 +38,51 @@ export function ManageDashboard() {
                 </p>
             </div>
 
-            {/* 1. Add New Default */}
+            {/* 1. Smart Recommendations (NEW) */}
+            {recommendations.length > 0 && (
+                <section style={{ marginBottom: '3rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+                        <Sparkles size={18} color="#9c27b0" />
+                        <h3 style={{
+                            color: '#9c27b0',
+                            fontSize: '0.9rem',
+                            textTransform: 'uppercase',
+                            letterSpacing: '1px',
+                            margin: 0
+                        }}>Found in History</h3>
+                    </div>
+
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+                        {recommendations.map((rec, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => addDefaultHabit(rec.name, rec.color)}
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem',
+                                    padding: '0.6rem 1rem',
+                                    backgroundColor: '#f3e5f5',
+                                    border: '1px solid #e1bee7',
+                                    color: '#4a148c',
+                                    borderRadius: '2rem',
+                                    cursor: 'pointer',
+                                    transition: 'transform 0.1s',
+                                    fontFamily: 'var(--font-hand)'
+                                }}
+                                onMouseDown={e => e.currentTarget.style.transform = 'scale(0.95)'}
+                                onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
+                            >
+                                <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: rec.color }}></div>
+                                {rec.name}
+                                <Plus size={14} />
+                            </button>
+                        ))}
+                    </div>
+                </section>
+            )}
+
+            {/* 2. Add New Default */}
             <section style={{ marginBottom: '3rem', backgroundColor: '#fff', padding: '2rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
                 <h2 style={{ fontFamily: 'var(--font-hand)', marginTop: 0 }}>Add New Template</h2>
                 <form onSubmit={handleCreate} style={{ display: 'flex', gap: '1rem' }}>
@@ -69,7 +113,7 @@ export function ManageDashboard() {
                 </form>
             </section>
 
-            {/* 2. List of Default Habits */}
+            {/* 3. List of Default Habits */}
             <section>
                 <h3 style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Current Template List</h3>
                 <div style={{ display: 'grid', gap: '1rem', marginTop: '1rem' }}>

@@ -150,12 +150,35 @@ export function TrackerView({ currentDate, setCurrentDate, habits, dailyLogs, on
             )}
 
             {/* 4. The Grid */}
-            <HabitGrid
-                currentDate={currentDate}
-                habits={habits}
-                dailyLogs={dailyLogs}
-                onToggleHabit={onToggleHabit}
-            />
+            {habits.length === 0 ? (
+                <div
+                    onClick={() => setIsAdding(true)}
+                    style={{
+                        padding: '3rem',
+                        textAlign: 'center',
+                        color: 'var(--text-secondary)',
+                        fontFamily: 'var(--font-hand)',
+                        fontSize: '1.2rem',
+                        border: '2px dashed var(--border-color)',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        backgroundColor: '#fafafa',
+                        transition: 'background-color 0.2s'
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.backgroundColor = '#f0f0f0'}
+                    onMouseLeave={e => e.currentTarget.style.backgroundColor = '#fafafa'}
+                >
+                    No habits for this month. <br />
+                    <span style={{ color: 'var(--text-primary)', fontWeight: 'bold', marginTop: '0.5rem', display: 'inline-block' }}>Click to Add +</span>
+                </div>
+            ) : (
+                <HabitGrid
+                    currentDate={currentDate}
+                    habits={habits}
+                    dailyLogs={dailyLogs}
+                    onToggleHabit={onToggleHabit}
+                />
+            )}
 
             <style>{`
         @keyframes slideDown {

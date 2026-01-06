@@ -1,0 +1,20 @@
+{
+  "monthId": "2025-11",
+  "habits": [
+    {
+      "id": "0a880ee4-f33f-4ef3-a23c-65528465a979",
+      "name": "water",
+      "color": "#d7aefb",
+      "createdAt": "2026-01-06T18:26:47.841Z"
+    }
+  ],
+  "dailyLogs": {
+    "8": [
+      "0a880ee4-f33f-4ef3-a23c-65528465a979"
+    ]
+  },
+  "reflection": {
+    "summary": "",
+    "mood": ""
+  }
+}
