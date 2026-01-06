@@ -10,6 +10,7 @@ import {
     Legend,
 } from 'chart.js';
 import { getDaysInMonth, subMonths, format, startOfMonth, getDay } from 'date-fns';
+import { useHabits } from '../hooks/useHabits'; // Import hook
 
 ChartJS.register(
     CategoryScale,
@@ -20,7 +21,11 @@ ChartJS.register(
     Legend
 );
 
-export function ReflectionView({ currentDate, habits, dailyLogs }) {
+export function ReflectionView() {
+    // ALWAYS use the real current date for Analysis, independent of Tracker state
+    const currentDate = new Date();
+    const { habits, dailyLogs } = useHabits(currentDate);
+
     const [viewMode, setViewMode] = useState('single'); // 'single' | 'compare'
     const [compareMonthOffset, setCompareMonthOffset] = useState(1); // 1 = previous month
     const [compareData, setCompareData] = useState(null);

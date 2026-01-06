@@ -46,13 +46,7 @@ function AppContent() {
               />
             } />
 
-            <Route path="/charts" element={
-              <ReflectionView
-                currentDate={currentDate}
-                habits={habits}
-                dailyLogs={dailyLogs}
-              />
-            } />
+            <Route path="/charts" element={<ReflectionView />} />
 
             <Route path="/manage" element={<ManageDashboard />} />
           </Routes>
