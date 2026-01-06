@@ -6,26 +6,57 @@
       "name": "study",
       "color": "#fff475",
       "createdAt": "2026-01-06T17:25:49.033Z"
+    },
+    {
+      "id": "56f3d8a3-ffe8-4efd-b20d-42298cbdd389",
+      "name": "water",
+      "color": "#d7aefb",
+      "createdAt": "2026-01-06T18:28:40.277Z"
     }
   ],
   "dailyLogs": {
+    "2": [
+      "56f3d8a3-ffe8-4efd-b20d-42298cbdd389"
+    ],
     "4": [
-      "bc7384f0-e8f0-4322-b0e9-cc02493d5c6c"
+      "bc7384f0-e8f0-4322-b0e9-cc02493d5c6c",
+      "56f3d8a3-ffe8-4efd-b20d-42298cbdd389"
+    ],
+    "5": [
+      "56f3d8a3-ffe8-4efd-b20d-42298cbdd389"
+    ],
+    "7": [
+      "56f3d8a3-ffe8-4efd-b20d-42298cbdd389"
     ],
     "8": [
-      "bc7384f0-e8f0-4322-b0e9-cc02493d5c6c"
+      "bc7384f0-e8f0-4322-b0e9-cc02493d5c6c",
+      "56f3d8a3-ffe8-4efd-b20d-42298cbdd389"
+    ],
+    "9": [
+      "56f3d8a3-ffe8-4efd-b20d-42298cbdd389"
     ],
     "11": [
       "bc7384f0-e8f0-4322-b0e9-cc02493d5c6c"
     ],
+    "13": [
+      "56f3d8a3-ffe8-4efd-b20d-42298cbdd389"
+    ],
     "16": [
-      "bc7384f0-e8f0-4322-b0e9-cc02493d5c6c"
+      "bc7384f0-e8f0-4322-b0e9-cc02493d5c6c",
+      "56f3d8a3-ffe8-4efd-b20d-42298cbdd389"
+    ],
+    "19": [
+      "56f3d8a3-ffe8-4efd-b20d-42298cbdd389"
     ],
     "21": [
       "bc7384f0-e8f0-4322-b0e9-cc02493d5c6c"
     ],
+    "24": [
+      "56f3d8a3-ffe8-4efd-b20d-42298cbdd389"
+    ],
     "26": [
-      "bc7384f0-e8f0-4322-b0e9-cc02493d5c6c"
+      "bc7384f0-e8f0-4322-b0e9-cc02493d5c6c",
+      "56f3d8a3-ffe8-4efd-b20d-42298cbdd389"
     ]
   },
   "reflection": {
